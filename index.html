@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/stylesPropios.css">
+    <title>Tabla de distribución de frecuencia</title>
+</head>
+<body class="bg-gray-50 font-body"> 
+    <div class="flex-1">
+
+        <div class="grid grid-cols-2 m-4">
+            <div class="flex items-center justify-center p-5 m-2 bg-purple-500 bg-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-center text-white">Tabla de distribución de frecuencia</h1>
+                    <div class="flex items-center justify-center py-3">
+                        <svg class="w-20 h-20" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255)"><path d="M11 15h2V9h3l-4-5-4 5h3z"></path><path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path></svg>
+                    </div>
+                    <p class="max-w-lg mx-auto mb-6 text-sm font-normal text-white">Selecciona un archivo en tu directorio (Sólo se aceptan archivos .CSV)</p>
+                    <div class="items-center justify-between px-2 py-1 overflow-hidden bg-white rounded-lg sm:flex">
+                        <!-- Input subir archivos CSV -->
+                        <input class="flex-grow px-2 py-2 text-base text-gray-400 outline-none " type="file" id="archivo" accept=".csv" placeholder="Selección de archivo" />
+                    </div>
+                </div>
+            </div>
+            <div class="m-2 ">
+            <div class="container p-6 mx-auto font-mono">
+                <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                    <div id="divTable" class="w-full overflow-x-auto">
+                        <!-- Tabla de i y Xi -->
+                        <table class="w-full">
+                            <thead>
+                                <tr class="sticky top-0 z-40 font-semibold tracking-wide text-left text-gray-900 uppercase bg-gray-100 border-b border-gray-600 text-md">
+                                <th class="px-4 py-3">i</th>
+                                <th class="px-4 py-3">Xi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white" id="table">
+                                <td class="px-4 py-3 text-xs border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-xs border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+                <div class="grid grid-cols-2">
+                    <div class="py-4">
+                        <div class="py-5">
+                            <div class="flex flex-col mx-4 space-y-2">
+                                <!-- Input Dato Menor -->
+                                <label for="datoMenor" class="select-none">Dato Menor</label>
+                                <input
+                                    id="datoMenor"
+                                    type="text"
+                                    class="w-40 px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                                />
+                            </div>
+                            <div class="flex flex-col mx-4 space-y-2">
+                                <!-- Input Dato Mayor -->
+                                <label for="datoMayor" class="select-none">Dato Mayor</label>
+                                <input
+                                    id="datoMayor"
+                                    type="text"
+                                    class="w-40 px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                                />
+                            </div>
+                            <div class="flex flex-col mx-4 space-y-2">
+                                <!-- Input Rango -->
+                                <label for="rango" class="select-none">Rango</label>
+                                <input
+                                    id="rango"
+                                    type="text"
+                                    class="w-40 px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-4 pt-10 ">
+                            <p class="font-normal"># de Clases</p>
+                            <div class="flex flex-col py-3 text-base font-medium">
+                                <!-- Radio Raiz -->
+                                <label class="inline-flex items-center px-10 mt-3 ">
+                                    <input id="radioRaiz" name="opcion" type="radio" class="w-5 h-5 form-radio" checked=false><span class="ml-2">Raíz</span>
+                                </label>
+                                <!-- Radio Sturges -->
+                                <label class="inline-flex items-center px-10 mt-3">
+                                    <input id="radioSturges" name="opcion" type="radio" class="w-5 h-5 form-radio" checked=false ><span class="ml-2"></span>Sturges</span>
+                                </label>
+                                <!-- Radio Vacio -->
+                                <label class="inline-flex items-center hidden px-10 mt-3">
+                                    <input  name="opcion" type="radio" class="w-5 h-5 form-radio" checked=false><span class="ml-2 "></span>
+                                </label>
+                            </div>
+                            <input
+                                id="numClases"
+                                type="text"
+                                class="w-40 px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                            />
+
+                            <div class="flex flex-col pt-5 space-y-2">
+                                <!-- Input de Amplitud -->
+                                <label for="amplitud" class="select-none">Amplitud</label>
+                                <input
+                                    id="amplitud"
+                                    type="text"
+                                    class="w-40 px-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <!-- Botón para generar -->
+                    <button  id="btnGenerar" class="w-40 px-4 py-2 mx-auto my-3 text-base font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-opacity-75">Generar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-4" id="divMostrar">
+            
+            <div class="grid grid-cols-2">
+                <div class="mt-2 mr-2">
+                    <!-- Boton Exportar -->
+                    <button id="btnExportar" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 font-medium rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg">Exportar</button>
+                </div>
+                <div class="mt-2 mr-2">
+                    <!-- Boton Limpiar -->
+                    <button id="btnLimpiar" type="button" class="w-full focus:outline-none text-gray-600 text-sm py-2.5 px-5 font-medium rounded-md border border-gray-600 hover:bg-gray-200">Limpiar</button>
+                </div>
+            </div>
+
+            <!-- Tabla Generada -->
+            <div class="container py-10 mx-auto font-mono">
+                <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                <div class="w-full overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="font-semibold tracking-wide text-left text-gray-900 uppercase bg-gray-100 border-b border-gray-600 text-md">
+                            <th class="px-4 py-3">Indice</th>
+                            <th class="px-4 py-3">Limite Inf.</th>
+                            <th class="px-4 py-3">Limite Sup.</th>
+                            <th class="px-4 py-3">Marca de Clase</th>
+                            <th class="px-4 py-3">Frecuencia Observada</th>
+                            <th class="px-4 py-3">Frec. Obs. Acumulada</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white"  id="tableBody">
+                            <tr class="text-gray-700">
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                                <td class="px-4 py-3 text-sm border">
+                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            
+            <!-- Gráfico -->
+            <section id="chart" class="px-40">
+                <canvas id="myChart" width="10px" height="10px"></canvas>
+            </section>
+        </div>
+
+    </div>
+
+    <script src="./js/project.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</body>
+</html>

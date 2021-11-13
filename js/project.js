@@ -4,11 +4,11 @@ const btnArchivo = document.getElementById('archivo');
 const btnGenerar = document.getElementById('btnGenerar');
 const btnLimpiar = document.getElementById('btnLimpiar');
 const radioRaiz = document.getElementById('radioRaiz');
-const radioSturges = document.getElementById('radioSturges')
+const radioSturges = document.getElementById('radioSturges');
 
 //Variables globales
 let myArray = [];
-let indiceArray = []
+let indiceArray = [];
 let rango = 0;
 let divTable = document.getElementById('divTable');
 

@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div class="m-4" id="divMostrar">
+        <div class="hidden m-4" id="divMostrar">
             
             <div class="grid grid-cols-2">
                 <div class="mt-2 mr-2">
@@ -155,24 +155,6 @@
                         </thead>
                         <tbody class="bg-white"  id="tableBody">
                             <tr class="text-gray-700">
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
-                                <td class="px-4 py-3 text-sm border">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Sin datos </span>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,8 +163,8 @@
             </div>
             
             <!-- Gráfico -->
-            <section id="chart" class="px-40">
-                <canvas id="myChart" width="10px" height="10px"></canvas>
+            <section class="px-40" id="chart">
+                <canvas id="myChart"></canvas>
             </section>
         </div>
 
@@ -190,5 +172,6 @@
 
     <script src="./js/project.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

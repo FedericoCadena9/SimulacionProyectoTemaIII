@@ -1,6 +1,7 @@
 //Botones
 const btnArchivo = document.getElementById('archivo');
 const btnGenerar = document.getElementById('btnGenerar');
+const btnExportar = document.getElementById('btnExportar');
 const btnLimpiar = document.getElementById('btnLimpiar');
 const radioRaiz = document.getElementById('radioRaiz');
 const radioSturges = document.getElementById('radioSturges');
@@ -194,14 +195,12 @@ btnGenerar.addEventListener('click', ()=> {
             iArray.push($(this).text());
         });
     });
-    console.log(iArray);
 
     $(document).ready(function() { 
         $("#tableBody tr td:nth-child(5)").each(function(i){
             frecArray.push($(this).text());
         });
     });
-    console.log(frecArray);
 
     //Generación de Gráfico con CHartJS
     let ctx = document.getElementById('myChart').getContext('2d');
@@ -220,19 +219,6 @@ btnGenerar.addEventListener('click', ()=> {
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
-            scales: {
-                responsive: true,
-                maintainAspectRatio: false,
-                y: {
-                    beginAtZero: true
-                },
-                xAxisID: [{
-                    categoryPercentage: 1.0,
-                    barPercentage: 1.0
-                }]
-            }
         }
     });
 })
@@ -273,5 +259,47 @@ btnLimpiar.addEventListener('click', () => {
     divMostrar.classList.add('hidden');
 })
 
-//Generación de Gráfico con CHartJS
+//Función para Exportar tabla a CSV
+function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    // Archivo CSV
+    csvFile = new Blob([csv], {type: "text/csv"});
+
+    // Link de Descarga
+    downloadLink = document.createElement("a");
+
+    // Nombre del Archivo
+    downloadLink.download = filename;
+
+    // Crear link del archivo
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Esconder link
+    downloadLink.style.display = "none";
+
+    // Añadir link al DOM
+    document.body.appendChild(downloadLink);
+
+    // Click Descargar
+    downloadLink.click();
+}
+
+
+function exportTableToCSV(filename) {
+    var csv = [];
+    var rows = document.querySelectorAll("#tableGenerado tr");
     
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Descargar Archivo CSV
+    downloadCSV(csv.join("\n"), filename);
+}
